@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Dual Login / Signup Form</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css'>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <img src="{% static 'img/image.png' %}" class="logo" />
+    <div class="body1">
+      <div class="ocean">
+        <div class="wave"></div>
+        <div class="wave"></div>
+      </div>
+      <!-- Log In Form Section -->
+      <section>
+        <div class="container" id="container">
+          <!-- Sign Up Form -->
+          <div class="form-container sign-up-container">
+            <form method="POST">
+              {% csrf_token %}
+              <h1>Sign Up</h1>
+              <div class="social-container">
+                <a href="https://Github.com/farazc60" target="_blank" class="social"><i class="fab fa-github"></i></a>
+                <a href="https://Codepen.io/codewithfaraz" target="_blank" class="social"><i class="fab fa-codepen"></i></a>
+                <a href="mailto:farazc60@gmail.com" target="_blank" class="social"><i class="fab fa-google"></i></a>
+              </div>
+              <span>Or use your Email for registration</span>
+              <label>
+                <input type="text" name="signup_username" placeholder="Name" required/>
+              </label>
+              <label>
+                <input type="email" name="signup_email" placeholder="Email" required/>
+              </label>
+              <label>
+                <input type="password" name="signup_password" placeholder="Password" required/>
+              </label>
+              <label>
+                <select name="signup_role" required>
+                  <option value="" disabled selected>Select your role</option>
+                  <option value="developer">Developer</option>
+                  <option value="tester">Tester</option>
+                  <option value="devops">DevOps</option>
+                </select>
+              </label>
+              <button type="submit" name="action" value="signup" style="margin-top: 9px">Sign Up</button>
+            </form>
+          </div>
+          <!-- Sign In Form -->
+          <div class="form-container sign-in-container">
+            <form method="POST">
+              {% csrf_token %}
+              <h1>Sign In</h1>
+              <div class="social-container">
+                <a href="https://Github.com/farazc60" target="_blank" class="social"><i class="fab fa-github"></i></a>
+                <a href="https://Codepen.io/codewithfaraz" target="_blank" class="social"><i class="fab fa-codepen"></i></a>
+                <a href="mailto:farazc60@gmail.com" target="_blank" class="social"><i class="fab fa-google"></i></a>
+              </div>
+              <span>Or sign in using Username</span>
+              <label>
+                <input type="text" name="login_username" placeholder="Username" required/>
+              </label>
+              <label>
+                <input type="password" name="login_password" placeholder="Password" required/>
+              </label>
+              <a href="#">Forgot your password?</a>
+              <button type="submit" name="action" value="login">Sign In</button>
+            </form>
+          </div>
+          <div class="overlay-container">
+            <div class="overlay">
+              <div class="overlay-panel overlay-left">
+                <h1>Log in</h1>
+                <p>Sign in here if you already have an account</p>
+                <button class="ghost mt-5" id="signIn">Sign In</button>
+              </div>
+              <div class="overlay-panel overlay-right">
+                <h1>Create an Account!</h1>
+                <p>Sign up if you still don't have an account...</p>
+                <button class="ghost" id="signUp">Sign Up</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js'></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script>
+      const signUpButton = document.getElementById('signUp');
+      const signInButton = document.getElementById('signIn');
+      const container = document.getElementById('container');
+
+      signUpButton.addEventListener('click', () =>
+          container.classList.add('right-panel-active'));
+
+      signInButton.addEventListener('click', () =>
+          container.classList.remove('right-panel-active'));
+    </script>
+  </body>
+</html>
